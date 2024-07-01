@@ -10,10 +10,10 @@ export default async function Nav() {
 
     return (
         <>
-            <header className={"bg-slate-500 py-4 text-white px-10"}>
+            <header className={"py-8 text-white"}>
                 <nav>
                     <ul className={"flex justify-between"}>
-                        <li>Logo</li>
+                        <li className={"text-black"}>Logo</li>
                         {!session ? (
                             <li>
                                 <Button asChild>

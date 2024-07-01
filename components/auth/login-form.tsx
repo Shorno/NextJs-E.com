@@ -10,9 +10,7 @@ export default function LoginForm(){
                 backButtonLabel={"Create a new account"}
                 showSocials={true}
             >
-                <div>
-                    hey
-                </div>
+                <div></div>
             </AuthCard>
         </>
     )

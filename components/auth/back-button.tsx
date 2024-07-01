@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function BackButton({href, label}: { href: string, label: string }) {
     return (
         <>
-            <div>
-                <Button className={"font-medium w-full"}>
+            <div className={"w-full flex items-center justify-center"}>
+                <Button className={"font-medium"}>
                     <Link href={"/"}>{label}</Link>
                 </Button>
             </div>
