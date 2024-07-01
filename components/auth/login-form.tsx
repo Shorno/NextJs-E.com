@@ -8,6 +8,10 @@ import {z} from "zod";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import {useAction} from "next-safe-action/hooks";
+import {emailSignIn} from "@/server/actions/email-signin";
+import {cn} from "@/lib/utils";
+
 
 export default function LoginForm() {
     const form = useForm({
@@ -18,8 +22,11 @@ export default function LoginForm() {
         }
     });
 
+
+    const {execute, result, status} = useAction(emailSignIn, {})
+
     const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-        console.log(values);
+        execute(values);
     }
 
     return (
@@ -81,7 +88,8 @@ export default function LoginForm() {
 
                             </div>
 
-                            <Button type={"submit"} className={"w-full my-2"}>
+                            <Button type={"submit"}
+                                    className={cn("w-full", status === "executing" ? "animate-pulse" : "")}>
                                 Login
                             </Button>
                         </form>
