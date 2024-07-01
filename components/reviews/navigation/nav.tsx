@@ -13,11 +13,14 @@ export default async function Nav() {
             <header className={"py-8 text-white"}>
                 <nav>
                     <ul className={"flex justify-between"}>
-                        <li className={"text-black"}>Logo</li>
+                        <li className={"text-black"}>
+                            <Link href={"/"}>Logo</Link>
+                        </li>
                         {!session ? (
                             <li>
                                 <Button asChild>
-                                    <Link className={"flex gap-2 "} href={"/auth/login"}><LogIn size={15}/><span>Login</span></Link>
+                                    <Link className={"flex gap-2 "} href={"/auth/login"}><LogIn
+                                        size={15}/><span>Login</span></Link>
                                 </Button>
                             </li>
                         ) : (<li><UserButton expires={session?.expires} user={session?.user}/></li>)
