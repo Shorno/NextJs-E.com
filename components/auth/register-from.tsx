@@ -13,6 +13,8 @@ import {cn} from "@/lib/utils";
 import {useState} from "react";
 import {RegisterSchema} from "@/app/types/register-schema";
 import {emailRegister} from "@/server/actions/email-register";
+import FormSuccess from "@/components/auth/form-success";
+import FormError from "@/components/auth/form-error";
 
 export default function RegisterFrom() {
 
@@ -27,11 +29,16 @@ export default function RegisterFrom() {
 
     const [error, setError] = useState("");
 
+    const [success, setSuccess] = useState("");
+
 
     const {execute, status} = useAction(emailRegister, {
         onSuccess(data) {
+            if (data.error) {
+                setError(data.error)
+            }
             if (data.success) {
-                console.log(data.success)
+                setSuccess(data.success)
             }
         }
     })
@@ -111,7 +118,8 @@ export default function RegisterFrom() {
                                         </FormItem>
                                     )}
                                 />
-
+                                <FormSuccess message={success}/>
+                                <FormError message={error}/>
                                 <Button variant={"link"} size={"sm"}>
                                     <Link href={"/auth/reset"}>Forgot Password</Link>
                                 </Button>
